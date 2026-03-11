@@ -1,54 +1,158 @@
-# React + TypeScript + Vite
+# 🎮 Tetris
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **[PT-BR]** Implementação clássica do Tetris com React, TypeScript e Vite.
+> **[EN]** Classic Tetris implementation built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Funcionalidades / Features
 
-## Expanding the ESLint configuration
+**[PT-BR]**
+- 7 peças tetromino clássicas (I, O, T, S, Z, J, L) com cores autênticas
+- **Ghost piece** — prévia semi-transparente do local de pouso da peça
+- **Hard drop** — queda instantânea com bônus de pontuação
+- **Soft drop** — aceleração manual da queda
+- **Wall kick** — rotação inteligente ao encostar nas paredes
+- Sistema de níveis: velocidade aumenta a cada 10 linhas eliminadas
+- Prévia da próxima peça
+- Controles por teclado e botões touch para mobile
+- Tela de pausa, game over e reinício
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**[EN]**
+- All 7 classic tetromino pieces (I, O, T, S, Z, J, L) with authentic colors
+- **Ghost piece** — semi-transparent landing preview
+- **Hard drop** — instant placement with bonus points
+- **Soft drop** — manual gravity acceleration
+- **Wall kick** — smart rotation near walls
+- Level system: speed increases every 10 lines cleared
+- Next piece preview
+- Keyboard controls and on-screen touch buttons for mobile
+- Pause, game over, and restart screens
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🛠 Tech Stack
+
+| | |
+|---|---|
+| **Framework** | [React 19](https://react.dev/) |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) |
+| **Build Tool** | [Vite](https://vitejs.dev/) + SWC |
+| **State** | `useReducer` (no external state library) |
+
+---
+
+## 🚀 Getting Started / Como Rodar
+
+### Pré-requisitos / Prerequisites
+
+- [Node.js](https://nodejs.org/) >= 18
+- npm >= 9
+
+### Instalação / Installation
+
+```bash
+# Clone o repositório / Clone the repository
+git clone <repository-url>
+cd Tetris
+
+# Instale as dependências / Install dependencies
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Desenvolvimento / Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm run dev
 ```
+
+Acesse / Open: `http://localhost:5173`
+
+### Build para produção / Production Build
+
+```bash
+npm run build
+```
+
+Os arquivos serão gerados na pasta `dist/`.
+Output files will be in the `dist/` folder.
+
+### Preview da build / Preview Build
+
+```bash
+npm run preview
+```
+
+---
+
+## 📜 Scripts
+
+| Comando / Command | Descrição / Description |
+|---|---|
+| `npm run dev` | Inicia o servidor de desenvolvimento / Start dev server |
+| `npm run build` | Compila para produção / Build for production |
+| `npm run preview` | Visualiza a build localmente / Preview production build |
+| `npm run lint` | Executa o linter / Run ESLint |
+
+---
+
+## 🎮 Como Jogar / How to Play
+
+### Teclado / Keyboard
+
+| Tecla / Key | Ação / Action |
+|---|---|
+| `←` `→` | Mover peça / Move piece |
+| `↑` | Rotacionar / Rotate |
+| `↓` | Queda lenta / Soft drop |
+| `Space` | Queda rápida / Hard drop |
+| `P` | Pausar/Retomar / Pause/Resume |
+
+### Mobile
+
+Use os botões na tela para jogar.
+Use the on-screen buttons to play.
+
+---
+
+## 🏆 Sistema de Pontuação / Scoring System
+
+| Linhas / Lines | Pontos base / Base Points |
+|---|---|
+| 1 (Single) | 100 |
+| 2 (Double) | 300 |
+| 3 (Triple) | 500 |
+| 4 (Tetris) | 800 |
+
+- **Multiplicador de nível / Level multiplier:** `pontos x (nível + 1)` / `points x (level + 1)`
+- **Hard drop:** +2 pontos por célula / +2 points per cell dropped
+- **Novo nível / New level:** a cada 10 linhas eliminadas / every 10 lines cleared
+
+---
+
+## 📁 Estrutura do Projeto / Project Structure
+
+```
+src/
+├── components/
+│   ├── Cell.tsx          # Célula individual do tabuleiro / Individual board cell
+│   ├── GameBoard.tsx     # Tabuleiro com ghost piece / Board with ghost piece
+│   ├── GameControls.tsx  # Captura de eventos de teclado / Keyboard event handler
+│   └── ScoreBoard.tsx    # Placar e prévia da próxima peça / Score & next piece
+├── hooks/
+│   └── useTetrisLogic.ts # Estado do jogo com useReducer / Game state with useReducer
+├── interfaces/
+│   └── index.tsx         # Tipos e interfaces TypeScript / TypeScript types
+├── pages/
+│   └── TetrisPage.tsx    # Página principal do jogo / Main game page
+└── utils/
+    ├── board.ts          # Lógica do tabuleiro / Board logic
+    └── tetrominos.ts     # Formas e rotações / Shapes and rotations
+```
+
+---
+
+## 📄 Licença / License
+
+Este projeto é de código aberto.
+This project is open source.
