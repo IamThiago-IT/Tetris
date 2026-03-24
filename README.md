@@ -93,6 +93,8 @@ npm run preview
 | `npm run build` | Compila para produção / Build for production |
 | `npm run preview` | Visualiza a build localmente / Preview production build |
 | `npm run lint` | Executa o linter / Run ESLint |
+| `npm run test` | Executa os testes em modo watch / Run tests in watch mode |
+| `npm run test:run` | Executa os testes uma vez / Run tests once |
 
 ---
 
